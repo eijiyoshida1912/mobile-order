@@ -1,0 +1,63 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 229; // cartより下にしたいなら cartを1000に
+}
+.cart {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 230;
+  width: 100%;
+  height: 70vh;
+  box-sizing: border-box;
+  padding: 24px 24px 80px;
+  border-radius: 24px 24px 0 0;
+  background-color: #faf7f2;
+  box-shadow: 0 0 8px #ccc;
+  .title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  .empty {
+    text-align: center;
+  }
+  .cartList {
+    list-style: none;
+    margin-bottom: 20px;
+    .cartItem {
+      border-bottom: 1px solid rgba(122, 78, 45, 0.04);
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      .cartName {
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+      .cartSub {
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 1;
+        opacity: 0.8;
+        .yenMark {
+          margin-right: 4px;
+        }
+      }
+      .cartRight {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  .submitButton {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .backButton {
+    width: 100%;
+  }
+}

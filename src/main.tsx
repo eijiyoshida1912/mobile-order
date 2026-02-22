@@ -8,7 +8,7 @@ import { UIProvider } from './contexts/UIContext.tsx';
 
 createRoot(document.getElementById('root')!).render(
   // <StrictMode>
-  <BrowserRouter basename="/mobile-order">
+  <BrowserRouter>
     <UIProvider>
       <CartProvider>
         <OrderHistoryProvider>

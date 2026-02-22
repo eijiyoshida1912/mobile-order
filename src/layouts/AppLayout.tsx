@@ -52,7 +52,6 @@ export default function AppLayout() {
 
       <OrderBar onOpenCart={openCart} />
       <Footer onCartOpen={openCart} onCheckDrawerOpen={() => setCheckDrawerOpen(true)} cartCount={cartCount} />
-
       <CartDrawer open={cartOpen} onClose={closeCart} onSubmitOrder={submitCart} />
 
       {/* 注文完了モーダル（共通） */}

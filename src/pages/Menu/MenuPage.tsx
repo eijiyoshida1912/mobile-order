@@ -101,12 +101,6 @@ export default function MenuPage() {
       <div>
         <div className={style.header}>
           <h1>メニュー</h1>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant="fullWidth">
-              <Tab label="ドリンク" {...a11yProps(0)} />
-              <Tab label="フード" {...a11yProps(1)} />
-            </Tabs>
-          </Box>
         </div>
         <div className={style.contents}>
 
@@ -205,6 +199,14 @@ export default function MenuPage() {
               </Button>
             </div>
           </Modal>
+
+
+          <Box sx={{ borderBottom: 1, borderColor: 'divider', position: "sticky", top: 0, background: "#faf7f2", zIndex: 1500 }}>
+            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant="fullWidth">
+              <Tab label="ドリンク" {...a11yProps(0)} />
+              <Tab label="フード" {...a11yProps(1)} />
+            </Tabs>
+          </Box>
 
           <CustomTabPanel value={value} index={0}>
             <ul className={style.list}>

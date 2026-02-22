@@ -25,6 +25,7 @@ const NumberSpinner = ({ value, onInc, onDec }: Props) => {
           textAlign: "center",
           fontWeight: 600,
           color: "text.primary",
+          backgroundColor: "#fff",
           borderTop: "1px solid",
           borderBottom: "1px solid",
           borderColor: "divider",

@@ -7,7 +7,8 @@ import ChatIcon from '@mui/icons-material/Chat';
 import style from "./footer.module.scss"
 import { Link } from 'react-router-dom';
 import CheckIcon from '@mui/icons-material/Check';
-import { AddIcCallOutlined } from '@mui/icons-material';
+import { motion } from 'motion/react';
+import { useCart } from '../../contexts/CartContext';
 
 type Props = {
   onCartOpen: () => void;
@@ -16,13 +17,30 @@ type Props = {
 };
 
 const Footer = ({ onCartOpen, onCheckDrawerOpen, cartCount }: Props) => {
+
   const [value, setValue] = useState(0);
+
   return (
     <div className={style.footerWrap}>
-      <Fab variant="extended" size="medium" className={style.fab}>
-        <ChatIcon sx={{ mr: 1 }} />
-        AIチャット
-      </Fab>
+      <motion.div
+        className={style.fabWrap}
+        animate={{
+          y: cartCount > 0 ? -80 : 0 // ← ドロワー高さに合わせる
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 300,
+          damping: 30
+        }}
+      >
+        <Fab variant="extended" size="medium" className={style.fab}
+          component={Link}
+          to="/chat">
+          <ChatIcon sx={{ mr: 1 }} />
+          AIチャット
+        </Fab>
+      </motion.div>
+
       <div className={style.footer}>
         <BottomNavigation
           showLabels

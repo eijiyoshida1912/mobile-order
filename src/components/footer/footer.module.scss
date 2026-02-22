@@ -6,12 +6,14 @@
     width: 100%;
     box-shadow: 0 0 8px #ccc;
   }
-  .fab {
+  .fabWrap {
     z-index: 21000;
     position: fixed;
     bottom: 70px;
     right: 24px;
-    background-color: #2f5d50;
-    color: #fff;
+    .fab {
+      background-color: #2f5d50;
+      color: #fff;
+    }
   }
 }

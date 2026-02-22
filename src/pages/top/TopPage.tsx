@@ -14,7 +14,7 @@ export default function TopPage() {
           className={style.button}
           component={Link}
           to="/menu"
-          variant="contained"
+          variant="outlined"
           size="large"
         >注文を始める</Button>
       </div>

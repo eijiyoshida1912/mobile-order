@@ -1,6 +1,7 @@
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).send("Method Not Allowed");
 
+  console.log("KEY EXISTS?", !!process.env.OPENAI_API_KEY);
   try {
     const { messages } = req.body ?? {};
     if (!Array.isArray(messages)) {

@@ -1,4 +1,3 @@
-import Footer from "../../components/footer/Footer";
 import { items } from "../../data/items";
 import { useSessionStorageState } from "../../hooks/useSessionStorageState";
 import style from "./orders.module.scss";
@@ -85,8 +84,6 @@ export default function OrdersPage() {
         )}
 
       </div>
-      <Footer
-      />
     </>
   );
 }

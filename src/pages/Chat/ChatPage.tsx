@@ -3,7 +3,8 @@ import { Box, Button, TextField, Paper } from "@mui/material";
 import { useCart } from "../../contexts/CartContext";
 import { items } from "../../data/items";
 import { useUI } from "../../contexts/UIContext";
-type Msg = { role: "user" | "assistant"; content: string };
+type Role = "user" | "assistant";
+type Msg = { role: Role; content: string };
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<Msg[]>([
@@ -29,7 +30,6 @@ export default function ChatPage() {
 
   type Suggestion = { id: string; reason: string };
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
-  const [suggestSummary, setSuggestSummary] = useState<string | null>(null);
 
   type Intent =
     | { type: "suggest"; mode: "thirsty" | "hungry" | "drink_all_night"; confidence: number; reason: string }
@@ -92,12 +92,12 @@ export default function ChatPage() {
     setSending(true);
 
     // 先にユーザー発言を追加
-    const next = [...messages, { role: "user", content: t }];
+    const userMsg: Msg = { role: "user", content: t };
+    const next: Msg[] = [...messages, userMsg];
     setMessages(next);
 
     // ★おすすめ表示は毎回リセット（前のおすすめが残らないように）
     setSuggestions([]);
-    setSuggestSummary(null);
 
     try {
       const intent = detectIntent(t);
@@ -106,10 +106,7 @@ export default function ChatPage() {
         const mode = intent.mode;
 
         // 先に一言（UX）
-        setMessages(prev => [
-          ...prev,
-          { role: "assistant", content: "その感じなら、すぐおすすめ出すね〜🍻" }
-        ]);
+        setMessages(prev => [...prev, { role: "assistant", content: "了解！おすすめ考えるね〜🍻" }]);
 
         const r = await fetch("/api/suggest", {
           method: "POST",
@@ -124,7 +121,6 @@ export default function ChatPage() {
         }
 
         const data = await r.json();
-        setSuggestSummary(data.summary ?? null);
         setSuggestions(data.suggestions ?? []);
 
         // チャット本文にも出す

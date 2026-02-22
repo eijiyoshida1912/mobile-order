@@ -2,7 +2,7 @@ import { useState } from "react";
 import style from "./checkDrawer.module.scss"
 import { useCart } from "../../contexts/CartContext";
 import { Button, Modal } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import thankyouImage from "../../images/thankyou.png"
 import { useOrderHistory } from "../../contexts/OrderHistoryContext";

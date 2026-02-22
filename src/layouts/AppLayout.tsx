@@ -8,11 +8,13 @@ import CartDrawer from "../components/cartDrawer/CartDrawer";
 import OrderCompleteModal from "../components/modal/orderCompleteModal/OrderCompleteModal";
 import CheckDrawer from "../components/checkDrawer/CheckDrawer";
 import { useUI } from "../contexts/UIContext";
+import { Snackbar, Alert } from "@mui/material";
 
 export default function AppLayout() {
   const { cart, cartCount, totalPrice, clearCart } = useCart();
   const { addOrder } = useOrderHistory();
   const { cartOpen, openCart, closeCart } = useUI();
+  const { toastOpen, toastMessage, closeToast } = useUI();
 
   // 注文完了モーダル ---------
   const [orderCompleteOpen, setOrderCompleteOpen] = useState(false);
@@ -59,6 +61,18 @@ export default function AppLayout() {
 
       {/* 会計 */}
       <CheckDrawer drawerOpen={checkDrawerOpen} drawerOnClose={() => setCheckDrawerOpen(false)} />
+
+      {/* カートに追加しました */}
+      <Snackbar
+        open={toastOpen}
+        autoHideDuration={2000}
+        onClose={closeToast}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert onClose={closeToast} severity="success" variant="filled" sx={{ width: "100%" }}>
+          {toastMessage}
+        </Alert>
+      </Snackbar>
     </>
   );
 }

@@ -42,7 +42,11 @@ function a11yProps(index: number) {
 export default function MenuPage() {
   const { openCart } = useUI();
   const [value, setValue] = useState(0);
-
+  const { toast } = useUI();
+  const handleAddToCart = (id: string) => {
+    inc(id);
+    toast("カートに追加しました！");
+  };
   // 追加：カート
   const { cart, inc, dec } = useCart();
   const getCount = (id: string) => cart[id] ?? 0;
@@ -165,7 +169,7 @@ export default function MenuPage() {
                       <div className={style.aiSpinner}>
                         <NumberSpinner
                           value={getCount(item.id)}
-                          onInc={() => inc(item.id)}
+                          onInc={() => handleAddToCart(item.id)}
                           onDec={() => dec(item.id)}
                         />
                       </div>
@@ -177,7 +181,7 @@ export default function MenuPage() {
               {/* 一括追加ボタン */}
               <Button
                 variant="contained"
-                onClick={() => suggestions.forEach(s => inc(s.id))}
+                onClick={() => suggestions.forEach(s => handleAddToCart(s.id))}
                 disabled={suggestions.length === 0}
                 className={style.addAllButton}
               >
@@ -201,7 +205,7 @@ export default function MenuPage() {
           </Modal>
 
 
-          <Box sx={{ borderBottom: 1, borderColor: 'divider', position: "sticky", top: 0, background: "#faf7f2", zIndex: 1500 }}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider', position: "sticky", top: 0, background: "#faf7f2", zIndex: 1300 }}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant="fullWidth">
               <Tab label="ドリンク" {...a11yProps(0)} />
               <Tab label="フード" {...a11yProps(1)} />
@@ -223,7 +227,7 @@ export default function MenuPage() {
                   <div className={style.buttonWrap}>
                     <NumberSpinner
                       value={getCount(item.id)}
-                      onInc={() => inc(item.id)}
+                      onInc={() => handleAddToCart(item.id)}
                       onDec={() => dec(item.id)}
                     />
                   </div>
@@ -246,7 +250,7 @@ export default function MenuPage() {
                   <div className={style.buttonWrap}>
                     <NumberSpinner
                       value={getCount(item.id)}
-                      onInc={() => inc(item.id)}
+                      onInc={() => handleAddToCart(item.id)}
                       onDec={() => dec(item.id)}
                     />
                   </div>
@@ -271,7 +275,7 @@ export default function MenuPage() {
               <h3 className={style.name}>{selectedItem.name}</h3>
               <NumberSpinner
                 value={getCount(selectedItem.id)}
-                onInc={() => inc(selectedItem.id)}
+                onInc={() => handleAddToCart(selectedItem.id)}
                 onDec={() => dec(selectedItem.id)}
               />
             </div>

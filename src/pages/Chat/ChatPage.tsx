@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Box, Button, TextField, Paper } from "@mui/material";
 import { useCart } from "../../contexts/CartContext";
 import { items } from "../../data/items";
+import { useUI } from "../../contexts/UIContext";
 type Msg = { role: "user" | "assistant"; content: string };
 
 export default function ChatPage() {
@@ -15,6 +16,13 @@ export default function ChatPage() {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  const { toast } = useUI();
+  const handleAddToCart = (id: string) => {
+    inc(id);
+    toast("カートに追加しました！");
+  };
+
 
   // おすすめ出す、カートに入れる
   const { inc, cart } = useCart();
@@ -157,7 +165,7 @@ export default function ChatPage() {
     <Box sx={{ p: 2, pb: 10 }}>
       <h1>AIチャット</h1>
 
-      <Paper sx={{ p: 2, height: "65vh", overflowY: "auto" }}>
+      <Paper sx={{ p: 2, height: "60vh", overflowY: "auto" }}>
         {messages.map((m, i) => (
           <Box
             key={i}
@@ -198,8 +206,8 @@ export default function ChatPage() {
                       <div style={{ opacity: 0.8 }}>{s.reason}</div>
                     </div>
 
-                    <Button variant="contained" onClick={() => inc(item.id)}>
-                      カートに追加
+                    <Button variant="contained" onClick={() => handleAddToCart(item.id)}>
+                      追加
                     </Button>
                   </li>
                 );

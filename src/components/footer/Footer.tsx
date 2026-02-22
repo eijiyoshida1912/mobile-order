@@ -8,7 +8,7 @@ import style from "./footer.module.scss"
 import { Link } from 'react-router-dom';
 import CheckIcon from '@mui/icons-material/Check';
 import { motion } from 'motion/react';
-import { useCart } from '../../contexts/CartContext';
+import { useLocation } from 'react-router-dom';
 
 type Props = {
   onCartOpen: () => void;
@@ -20,26 +20,31 @@ const Footer = ({ onCartOpen, onCheckDrawerOpen, cartCount }: Props) => {
 
   const [value, setValue] = useState(0);
 
+  const location = useLocation();
+  console.log(location.pathname);
+
   return (
     <div className={style.footerWrap}>
-      <motion.div
-        className={style.fabWrap}
-        animate={{
-          y: cartCount > 0 ? -80 : 0 // ← ドロワー高さに合わせる
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 300,
-          damping: 30
-        }}
-      >
-        <Fab variant="extended" size="medium" className={style.fab}
-          component={Link}
-          to="/chat">
-          <ChatIcon sx={{ mr: 1 }} />
-          AIチャット
-        </Fab>
-      </motion.div>
+      {location.pathname !== "/chat" && (
+        <motion.div
+          className={style.fabWrap}
+          animate={{
+            y: cartCount > 0 ? -80 : 0 // ← ドロワー高さに合わせる
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 30
+          }}
+        >
+          <Fab variant="extended" size="medium" className={style.fab}
+            component={Link}
+            to="/chat">
+            <ChatIcon sx={{ mr: 1 }} />
+            AIチャット
+          </Fab>
+        </motion.div>
+      )}
 
       <div className={style.footer}>
         <BottomNavigation

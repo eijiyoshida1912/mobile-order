@@ -4,6 +4,7 @@ import NumberSpinner from "../numberSpinner/NumberSpinner";
 import { items } from "../../data/items";
 import { useCart } from "../../contexts/CartContext";
 import { AnimatePresence, motion } from "motion/react";
+import { useUI } from "../../contexts/UIContext";
 
 type Props = {
   open: boolean;
@@ -14,6 +15,13 @@ type Props = {
 export default function CartDrawer({ open, onClose, onSubmitOrder }: Props) {
   const { cart, cartCount: totalCount, totalPrice, inc, dec } = useCart();
   const getCount = (id: string) => cart[id] ?? 0;
+
+
+  const { toast } = useUI();
+  const handleAddToCart = (id: string) => {
+    inc(id);
+    toast("カートに追加しました！");
+  };
 
   return (
     <AnimatePresence>
@@ -60,7 +68,7 @@ export default function CartDrawer({ open, onClose, onSubmitOrder }: Props) {
                     <div className={style.cartRight}>
                       <NumberSpinner
                         value={getCount(item.id)}
-                        onInc={() => inc(item.id)}
+                        onInc={() => handleAddToCart(item.id)}
                         onDec={() => dec(item.id)}
                       />
                     </div>

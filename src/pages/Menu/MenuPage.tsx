@@ -205,7 +205,7 @@ export default function MenuPage() {
           </Modal>
 
 
-          <Box sx={{ borderBottom: 1, borderColor: 'divider', position: "sticky", top: 0, background: "#faf7f2", zIndex: 1300 }}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider', position: "sticky", top: 0, background: "#faf7f2", zIndex: 1250 }}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant="fullWidth">
               <Tab label="ドリンク" {...a11yProps(0)} />
               <Tab label="フード" {...a11yProps(1)} />

@@ -115,13 +115,13 @@ export default function MenuPage() {
             </div>
             <Box sx={{ display: "flex", gap: 1, mb: 1 }}>
               <Button variant="contained" disabled={loading} onClick={() => onAiSuggest("thirsty")}>
-                喉が渇いた
+                喉が<br />渇いた
               </Button>
               <Button variant="contained" disabled={loading} onClick={() => onAiSuggest("hungry")}>
-                お腹すいた
+                お腹<br />すいた
               </Button>
               <Button variant="contained" disabled={loading} onClick={() => onAiSuggest("drink_all_night")}>
-                とことん飲みたい
+                とことん <br />飲みたい
               </Button>
             </Box>
           </div>

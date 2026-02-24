@@ -3,6 +3,7 @@ import { Box, Button, TextField, Paper } from "@mui/material";
 import { useCart } from "../../contexts/CartContext";
 import { items } from "../../data/items";
 import { useUI } from "../../contexts/UIContext";
+import style from "./chatPage.module.scss";
 type Role = "user" | "assistant";
 type Msg = { role: Role; content: string };
 
@@ -188,27 +189,30 @@ export default function ChatPage() {
 
         {suggestions.length > 0 && (
           <Paper sx={{ p: 2, mt: 2 }}>
-            <h3 style={{ marginTop: 0 }}>おすすめ</h3>
+            <div className={style.recommend}>
+              <h3 className={style.title}>おすすめ</h3>
 
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {suggestions.map(s => {
-                const item = items.find(i => i.id === s.id);
-                if (!item) return null;
+              <ul className={style.list}>
+                {suggestions.map(s => {
+                  const item = items.find(i => i.id === s.id);
+                  if (!item) return null;
 
-                return (
-                  <li key={s.id} style={{ display: "flex", justifyContent: "space-between", gap: 12, padding: "10px 0" }}>
-                    <div>
-                      <div style={{ fontWeight: 700 }}>{item.name}</div>
-                      <div style={{ opacity: 0.8 }}>{s.reason}</div>
-                    </div>
+                  return (
+                    <li key={s.id} className={style.list}>
+                      <div>
+                        <p className={style.name}>{item.name}</p>
+                        <p className={style.price}>¥{item.price.toLocaleString()}</p>
+                        <p className={style.reason}>{s.reason}</p>
+                      </div>
 
-                    <Button variant="contained" onClick={() => handleAddToCart(item.id)}>
-                      追加
-                    </Button>
-                  </li>
-                );
-              })}
-            </ul>
+                      <Button variant="contained" onClick={() => handleAddToCart(item.id)} className={style.button}>
+                        追加
+                      </Button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </Paper>
         )}
 

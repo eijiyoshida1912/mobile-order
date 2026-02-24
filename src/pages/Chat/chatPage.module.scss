@@ -1,0 +1,32 @@
+.recommend {
+  .title {
+    margin-top: 0;
+  }
+  .list {
+    list-style: none;
+    > li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(122, 78, 45, 0.04);
+      &:last-child {
+        border-bottom: none;
+      }
+      .name {
+      }
+      .price {
+        font-weight: bold;
+        font-size: 12px;
+        opacity: 0.8;
+      }
+      .reason {
+        opacity: 0.8;
+        font-size: 14px;
+      }
+      .button {
+      }
+    }
+  }
+}

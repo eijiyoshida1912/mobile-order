@@ -160,10 +160,12 @@ export default function MenuPage() {
                 {suggestions.map(s => {
                   const item = items.find(i => i.id === s.id);
                   if (!item) return null;
+                  console.log(item);
                   return (
                     <li key={s.id} className={style.aiSuggestList}>
                       <div className={style.aiText}>
                         <p className={style.name}>{item.name}</p>
+                        <p className={style.price}>¥{item.price.toLocaleString()}</p>
                         <p className={style.reason}>{s.reason}</p>
                       </div>
                       <div className={style.aiSpinner}>
